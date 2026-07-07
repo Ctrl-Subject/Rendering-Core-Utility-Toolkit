@@ -2,7 +2,7 @@
 
 #include "RendererAPI.h"
 
-namespace Renderer
+namespace RCUTRenderer
 {
     class Renderer_API Camera
     {

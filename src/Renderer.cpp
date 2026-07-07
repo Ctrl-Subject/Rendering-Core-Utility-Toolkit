@@ -1,4 +1,4 @@
-#include "RCUTRenderer.h"
+#include "RCUT.h"
 
 #include "Camera.h"
 #include "Raycaster.h"

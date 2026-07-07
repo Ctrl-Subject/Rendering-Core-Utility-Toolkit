@@ -6,7 +6,7 @@
 #include "Texture.h"
 #include <vector>
 
-namespace Renderer
+namespace RCUTRenderer
 {
     struct Sprite
     {

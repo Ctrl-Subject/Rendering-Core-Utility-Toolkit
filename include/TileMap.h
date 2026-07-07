@@ -3,12 +3,10 @@
 #include "RendererAPI.h"
 #include <vector>
 
-namespace 
-Renderer
+namespace  RCUTRenderer
 {
 
-    class 
-Renderer_API TileMap
+    class Renderer_API TileMap
     {
 
     public:
