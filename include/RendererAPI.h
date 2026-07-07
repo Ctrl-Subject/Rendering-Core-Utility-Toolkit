@@ -6,13 +6,17 @@
 
 #ifdef _WIN32
 
-    #ifdef RENDERER_EXPORTS
-        #define RENDERER_API __declspec(dllexport)
+    #ifdef 
+RCUTRenderer_EXPORTS
+        #define 
+RCUTRenderer_API __declspec(dllexport)
     #else
-        #define RENDERER_API __declspec(dllimport)
+        #define 
+RCUTRenderer_API __declspec(dllimport)
     #endif
 
 #else
 
-    #define RENDERER_API
+    #define 
+RCUTRenderer_API
 #endif

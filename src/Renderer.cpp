@@ -1,54 +1,86 @@
-#include "Renderer.h"
+#include "RCUT.h"
 
-#include <GL/freeglut.h>
+#include "Camera.h"
+#include "Raycaster.h"
+#include "TileMap.h"
 
-
-namespace Renderer
+namespace RCUT
+RCUTRenderer
 {
 
-    //**************************************************
-    // Initialize renderer
-    //**************************************************
+    static Camera camera;
+    static Raycaster raycaster;
 
-    bool Renderer::Initialize()
+
+    bool Initialize(
+        int width,
+        int height
+    )
     {
+        raycaster.Initialize(width);
 
-        glEnable(GL_BLEND);
+        camera.SetPosition(
+            0,
+            0
+        );
 
-        glBlendFunc(
-            GL_SRC_ALPHA,
-            GL_ONE_MINUS_SRC_ALPHA);
-
-        glEnable(GL_TEXTURE_2D);
         return true;
     }
 
-    //**************************************************
-    // Shutdown renderer
-    //**************************************************
 
-    void Renderer::Shutdown()
+
+    void BeginFrame()
     {
-
+        glClear(GL_COLOR_BUFFER_BIT);
     }
 
-    //**************************************************
-    // Begin frame
-    //**************************************************
 
-    void Renderer::BeginFrame()
+
+    void RenderMap(
+        int* tiles,
+        int width,
+        int height,
+        int tileSize,
+        float playerX,
+        float playerY,
+        float playerAngle
+    )
     {
-        glClear(
-            GL_COLOR_BUFFER_BIT |
-            GL_DEPTH_BUFFER_BIT
+        TileMap map;
+
+        map.tiles = tiles;
+        map.width = width;
+        map.height = height;
+        map.tileSize = tileSize;
+
+
+        camera.SetPosition(
+            playerX,
+            playerY
+        );
+
+        camera.SetAngle(
+            playerAngle
+        );
+
+
+        raycaster.Render(
+            map,
+            camera,
+            512
         );
     }
 
-    //**************************************************
-    // End frame
-    //**************************************************
 
-    void Renderer::EndFrame()
+
+    void EndFrame()
+    {
+
+    }
+
+
+
+    void Shutdown()
     {
 
     }

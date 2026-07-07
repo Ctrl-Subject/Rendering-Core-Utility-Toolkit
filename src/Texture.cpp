@@ -7,8 +7,10 @@
 #include <cstdio>
 
 
-namespace Renderer
+namespace RCUT
+RCUTRenderer
 {
+
 
 
 //**************************************************

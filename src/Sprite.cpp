@@ -9,7 +9,8 @@
 #define PI 3.1415926535f
 
 
-namespace Renderer
+namespace RCUT
+RCUTRenderer
 {
 
 
@@ -17,7 +18,8 @@ namespace Renderer
     // Remove sprites from render queue
     //**************************************************
 
-    void SpriteRenderer::Clear()
+    void Sprite
+RCUTRenderer::Clear()
     {
         sprites.clear();
     }
@@ -28,7 +30,8 @@ namespace Renderer
     // Add sprite
     //**************************************************
 
-    void SpriteRenderer::Add(
+    void Sprite
+RCUTRenderer::Add(
         const Sprite& sprite
     )
     {
@@ -74,7 +77,8 @@ namespace Renderer
     // Render sprites
     //**************************************************
 
-    void SpriteRenderer::Render(
+    void Sprite
+RCUTRenderer::Render(
         const Camera& camera,
         const Raycaster& raycaster,
         int screenWidth,

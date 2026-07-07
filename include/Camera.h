@@ -1,10 +1,13 @@
 #pragma once
 
-#include "RendererAPI.h"
+#include "
+RCUTRendererAPI.h"
 
-namespace Renderer
+namespace 
+RCUTRenderer
 {
-    class RENDERER_API Camera
+    class 
+RCUTRenderer_API Camera
     {
     private:
 

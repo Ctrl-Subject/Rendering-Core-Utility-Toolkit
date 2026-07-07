@@ -1,6 +1,7 @@
 #pragma once
 
-#include "RendererAPI.h"
+#include "
+RCUTRendererAPI.h"
 #include "Camera.h"
 #include "Raycaster.h"
 #include "Sprite.h"
@@ -8,15 +9,20 @@
 #include "TileMap.h"
 
 
-namespace Renderer
+namespace 
+RCUTRenderer
 {
     //**************************************************
-    // Renderer manager
+    // 
+RCUTRenderer manager
     //
-    // Controls renderer initialization.
+    // Controls 
+RCUTRenderer initialization.
     //**************************************************
 
-    class RENDERER_API Renderer
+    class 
+RCUTRenderer_API 
+RCUTRenderer
     {
 
         public:
