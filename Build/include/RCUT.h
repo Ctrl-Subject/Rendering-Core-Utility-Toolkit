@@ -1,86 +1,93 @@
 #pragma once
 
-#ifdef RCUT_RENDERER_EXPORTS
-#define RCUT_API __declspec(dllexport)
-#else
-#define RCUT_API __declspec(dllimport)
-#endif
+//=====================================================
+// RCUT - Rendering Core Utility Toolkit
+// Public API
+//=====================================================
 
+#ifdef _WIN32
+    #ifdef RCUT_RENDERER_EXPORTS
+        #define RCUT_API __declspec(dllexport)
+    #else
+        #define RCUT_API __declspec(dllimport)
+    #endif
+#else
+    #define RCUT_API
+#endif
 
 namespace RCUTRenderer
 {
-
-    //**************************************************
-    // Start renderer
-    //
-    // Creates internal renderer objects and prepares
-    // OpenGL resources.
-    //**************************************************
+    //=================================================
+    // Engine Lifetime
+    //=================================================
 
     RCUT_API bool Initialize(
-        int width,
-        int height
+        int screenWidth,
+        int screenHeight
     );
-
-
-
-    //**************************************************
-    // Start drawing frame
-    //
-    // Clears the screen and prepares rendering.
-    //**************************************************
-
-    RCUT_API void BeginFrame();
-
-
-
-    //**************************************************
-    // Render the tile map
-    //
-    // tiles:
-    //     Array containing your map data
-    //
-    // width / height:
-    //     Map dimensions
-    //
-    // tileSize:
-    //     Size of each tile in pixels
-    //
-    // playerX/playerY:
-    //     Player world position
-    //
-    // playerAngle:
-    //     Player rotation
-    //**************************************************
-
-    RCUT_API void RenderMap(
-        int* tiles,
-        int width,
-        int height,
-        int tileSize,
-        float playerX,
-        float playerY,
-        float playerAngle
-    );
-
-
-
-    //**************************************************
-    // Finish drawing frame
-    //
-    // Swaps OpenGL buffers.
-    //**************************************************
-
-    RCUT_API void EndFrame();
-
-
-
-    //**************************************************
-    // Shutdown renderer
-    //
-    // Frees renderer resources.
-    //**************************************************
 
     RCUT_API void Shutdown();
 
+    //=================================================
+    // Frame
+    //=================================================
+
+    RCUT_API void BeginFrame();
+
+    RCUT_API void EndFrame();
+
+    //=================================================
+    // Camera
+    //=================================================
+
+    RCUT_API void SetCameraPosition(
+        float x,
+        float y
+    );
+
+    RCUT_API void SetCameraAngle(
+        float angle
+    );
+
+    RCUT_API void SetCameraFOV(
+        float fov
+    );
+
+    //=================================================
+    // Map Rendering
+    //=================================================
+
+    RCUT_API void RenderMap(
+        const int* tiles,
+        int mapWidth,
+        int mapHeight,
+        int tileSize
+    );
+
+    //=================================================
+    // Sprites
+    //=================================================
+
+    RCUT_API void ClearSprites();
+
+    RCUT_API void AddSprite(
+        float x,
+        float y,
+        float size,
+        unsigned textureID
+    );
+
+    RCUT_API void RenderSprites();
+
+    //=================================================
+    // Textures
+    //=================================================
+
+    RCUT_API unsigned LoadTexture(
+        const char* filename
+    );
+
+    RCUT_API void DestroyTexture(
+        unsigned textureID
+    );
 }

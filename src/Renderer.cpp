@@ -1,5 +1,5 @@
-#include "RCUT.h"
 
+#include "Renderer.h"
 #include "Camera.h"
 #include "Raycaster.h"
 #include "TileMap.h"
@@ -10,13 +10,13 @@
 namespace RCUTRenderer
 {
 
-    static Renderer::Camera camera;
+    static Camera camera;
 
-    static Renderer::Raycaster raycaster;
+    static Raycaster raycaster;
 
 
 
-    bool Initialize(
+    bool Renderer::Initialize(
         int width,
         int height
     )
@@ -33,7 +33,7 @@ namespace RCUTRenderer
 
 
 
-    void BeginFrame()
+    void Renderer::BeginFrame()
     {
         glClear(
             GL_COLOR_BUFFER_BIT
@@ -42,7 +42,7 @@ namespace RCUTRenderer
 
 
 
-    void RenderMap(
+    void Renderer::RenderMap(
         int* tiles,
         int width,
         int height,
@@ -53,10 +53,9 @@ namespace RCUTRenderer
     )
     {
 
-        Renderer::TileMap map;
+        TileMap map;
 
-
-        map.tiles = tiles;
+        map.tiles = std::vector<int>(tiles, tiles + (width * height));
         map.width = width;
         map.height = height;
         map.tileSize = tileSize;
@@ -83,14 +82,14 @@ namespace RCUTRenderer
 
 
 
-    void EndFrame()
+    void Renderer::EndFrame()
     {
         glutSwapBuffers();
     }
 
 
 
-    void Shutdown()
+    void Renderer::Shutdown()
     {
 
     }
