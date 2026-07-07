@@ -1,15 +1,19 @@
-#include "RCUT.h"
+#include "RCUTRenderer.h"
 
 #include "Camera.h"
 #include "Raycaster.h"
 #include "TileMap.h"
 
-namespace RCUT
-RCUTRenderer
+#include <GL/freeglut.h>
+
+
+namespace RCUTRenderer
 {
 
-    static Camera camera;
-    static Raycaster raycaster;
+    static Renderer::Camera camera;
+
+    static Renderer::Raycaster raycaster;
+
 
 
     bool Initialize(
@@ -31,7 +35,9 @@ RCUTRenderer
 
     void BeginFrame()
     {
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(
+            GL_COLOR_BUFFER_BIT
+        );
     }
 
 
@@ -46,7 +52,9 @@ RCUTRenderer
         float playerAngle
     )
     {
-        TileMap map;
+
+        Renderer::TileMap map;
+
 
         map.tiles = tiles;
         map.width = width;
@@ -59,6 +67,7 @@ RCUTRenderer
             playerY
         );
 
+
         camera.SetAngle(
             playerAngle
         );
@@ -69,13 +78,14 @@ RCUTRenderer
             camera,
             512
         );
+
     }
 
 
 
     void EndFrame()
     {
-
+        glutSwapBuffers();
     }
 
 

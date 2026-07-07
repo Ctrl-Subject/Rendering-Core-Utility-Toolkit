@@ -1,14 +1,12 @@
 #pragma once
 
-#include "
-RCUTRendererAPI.h"
+#include "RendererAPI.h"
 #include "Camera.h"
 #include "Raycaster.h"
 #include "Texture.h"
 #include <vector>
 
-namespace 
-RCUTRenderer
+namespace Renderer
 {
     struct Sprite
     {
@@ -36,9 +34,7 @@ RCUTRenderer
         }
     };
 
-    class 
-RCUTRenderer_API Sprite
-RCUTRenderer
+    class Renderer_API SpriteRenderer
     {
     private:
 

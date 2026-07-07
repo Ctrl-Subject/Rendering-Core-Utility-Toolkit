@@ -1,15 +1,12 @@
 #pragma once
 
-#include "
-RCUTRendererAPI.h"
+#include "RendererAPI.h"
 
-namespace 
-RCUTRenderer
+namespace Renderer
 {
 
     using TextureID = unsigned int;
-    class 
-RCUTRenderer_API TextureManager
+    class Renderer_API TextureManager
     {
         public:
 

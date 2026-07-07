@@ -1,16 +1,13 @@
 #pragma once
 
-#include "
-RCUTRendererAPI.h"
+#include "RendererAPI.h"
 
 #include "Camera.h"
 #include "TileMap.h"
 
-namespace 
-RCUTRenderer
+namespace RCUTRenderer
 {
-    class 
-RCUTRenderer_API Raycaster
+    class Renderer_API Raycaster
     {
         private:
             float* depthBuffer;

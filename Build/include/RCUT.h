@@ -1,25 +1,20 @@
 #pragma once
 
-#ifdef RCUT_
-RCUTRenderer_EXPORTS
+#ifdef RCUT_RENDERER_EXPORTS
 #define RCUT_API __declspec(dllexport)
 #else
 #define RCUT_API __declspec(dllimport)
 #endif
 
 
-namespace RCUT
-RCUTRenderer
+namespace RCUTRenderer
 {
 
     //**************************************************
-    // Starts the 
-RCUTRenderer
+    // Start renderer
     //
-    // width  = screen width
-    // height = screen height
-    //
-    // Returns false if initialization fails
+    // Creates internal renderer objects and prepares
+    // OpenGL resources.
     //**************************************************
 
     RCUT_API bool Initialize(
@@ -28,10 +23,11 @@ RCUTRenderer
     );
 
 
+
     //**************************************************
-    // Starts a frame
+    // Start drawing frame
     //
-    // Clears buffers and prepares rendering
+    // Clears the screen and prepares rendering.
     //**************************************************
 
     RCUT_API void BeginFrame();
@@ -39,15 +35,22 @@ RCUTRenderer
 
 
     //**************************************************
-    // Draws the raycast world
+    // Render the tile map
     //
-    // tiles     = map array
-    // width     = map width in tiles
-    // height    = map height in tiles
-    // tileSize  = size of each tile
+    // tiles:
+    //     Array containing your map data
     //
-    // playerX/Y = player world position
-    // angle     = player looking direction
+    // width / height:
+    //     Map dimensions
+    //
+    // tileSize:
+    //     Size of each tile in pixels
+    //
+    // playerX/playerY:
+    //     Player world position
+    //
+    // playerAngle:
+    //     Player rotation
     //**************************************************
 
     RCUT_API void RenderMap(
@@ -57,35 +60,15 @@ RCUTRenderer
         int tileSize,
         float playerX,
         float playerY,
-        float angle
+        float playerAngle
     );
 
 
 
     //**************************************************
-    // Draw a sprite
+    // Finish drawing frame
     //
-    // textureID = OpenGL texture ID
-    // x/y       = world position
-    // width     = sprite width
-    // height    = sprite height
-    //**************************************************
-
-    RCUT_API void RenderSprite(
-        unsigned int textureID,
-        float x,
-        float y,
-        float width,
-        float height
-    );
-
-
-
-    //**************************************************
-    // Ends the frame
-    //
-    // Used for any 
-RCUTRenderer cleanup
+    // Swaps OpenGL buffers.
     //**************************************************
 
     RCUT_API void EndFrame();
@@ -93,8 +76,9 @@ RCUTRenderer cleanup
 
 
     //**************************************************
-    // Frees 
-RCUTRenderer memory
+    // Shutdown renderer
+    //
+    // Frees renderer resources.
     //**************************************************
 
     RCUT_API void Shutdown();

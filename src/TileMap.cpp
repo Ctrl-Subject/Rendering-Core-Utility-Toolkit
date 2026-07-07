@@ -1,8 +1,7 @@
 #include "TileMap.h"
 
 
-namespace 
-RCUTRenderer
+namespace Renderer
 {
 
     //**************************************************
