@@ -1,14 +1,14 @@
 #include "Raycaster.h"
 
 #include <GL/freeglut.h>
-
 #include <cmath>
 
 
 #define PI 3.1415926535f
 
 
-namespace Renderer
+namespace RCUT
+RCUTRenderer
 {
 
 
@@ -49,9 +49,7 @@ void Raycaster::Initialize(int width)
 
 
     for(int i = 0; i < width; i++)
-    {
         depthBuffer[i] = 0;
-    }
 }
 
 
@@ -66,32 +64,23 @@ void Raycaster::Render(
     int screenHeight
 )
 {
-
-    float rayAngle = camera.GetAngle() - camera.GetFOV() / 2;
-    float angleStep = camera.GetFOV() / screenWidth;
-
+    float rayAngle = camera.GetAngle() - camera.GetFOV()/2;
+    float angleStep = camera.GetFOV()/screenWidth;
 
 
     for(int ray = 0; ray < screenWidth; ray++)
     {
 
-        //**************************************************
-        // Ray direction
-        //**************************************************
-
         float rayDirX = cos(rayAngle);
         float rayDirY = sin(rayAngle);
 
 
-
-        int mapX = camera.GetX() / map.tileSize;
-        int mapY = camera.GetY() / map.tileSize;
-
+        int mapX = camera.GetX()/map.tileSize;
+        int mapY = camera.GetY()/map.tileSize;
 
 
-        float deltaDistX = fabs(1.0f / rayDirX);
-        float deltaDistY = fabs(1.0f / rayDirY);
-
+        float deltaDistX = fabs(1.0f/rayDirX);
+        float deltaDistY = fabs(1.0f/rayDirY);
 
 
         int stepX;
@@ -111,7 +100,7 @@ void Raycaster::Render(
             stepX = -1;
 
             sideDistX =
-                (camera.GetX() / map.tileSize - mapX)
+                (camera.GetX()/map.tileSize - mapX)
                 *
                 deltaDistX;
         }
@@ -121,7 +110,7 @@ void Raycaster::Render(
             stepX = 1;
 
             sideDistX =
-                (mapX + 1.0f - camera.GetX() / map.tileSize)
+                (mapX + 1.0f - camera.GetX()/map.tileSize)
                 *
                 deltaDistX;
         }
@@ -137,7 +126,7 @@ void Raycaster::Render(
             stepY = -1;
 
             sideDistY =
-                (camera.GetY() / map.tileSize - mapY)
+                (camera.GetY()/map.tileSize - mapY)
                 *
                 deltaDistY;
         }
@@ -147,7 +136,7 @@ void Raycaster::Render(
             stepY = 1;
 
             sideDistY =
-                (mapY + 1.0f - camera.GetY() / map.tileSize)
+                (mapY + 1.0f - camera.GetY()/map.tileSize)
                 *
                 deltaDistY;
         }
@@ -161,12 +150,11 @@ void Raycaster::Render(
 
 
         //**************************************************
-        // DDA ray stepping
+        // DDA
         //**************************************************
 
         while(!hit)
         {
-
             if(sideDistX < sideDistY)
             {
                 sideDistX += deltaDistX;
@@ -189,13 +177,11 @@ void Raycaster::Render(
             );
 
 
-
             if(tile != 0)
             {
                 hit = 1;
                 hitType = tile;
             }
-
         }
 
 
@@ -204,19 +190,13 @@ void Raycaster::Render(
         // Distance calculation
         //**************************************************
 
-        float distance;
-
-
-        if(side == 0)
-            distance = sideDistX - deltaDistX;
-
-        else
-            distance = sideDistY - deltaDistY;
-
+        float distance =
+            (side == 0 ?
+            sideDistX - deltaDistX :
+            sideDistY - deltaDistY);
 
 
         distance *= map.tileSize;
-
 
 
         // Fish eye correction
@@ -224,7 +204,6 @@ void Raycaster::Render(
         distance *= cos(
             camera.GetAngle() - rayAngle
         );
-
 
 
         depthBuffer[ray] = distance;
@@ -235,15 +214,16 @@ void Raycaster::Render(
         // Wall height
         //**************************************************
 
-        float wallHeight =
+        float lineH =
             (map.tileSize * screenHeight)
             /
             (distance + 0.0001f);
 
 
-
-        float offset =
-            screenHeight / 2 - wallHeight / 2;
+        float lineO =
+            (screenHeight/2)
+            -
+            (lineH/2);
 
 
 
@@ -252,31 +232,13 @@ void Raycaster::Render(
         //**************************************************
 
         if(hitType == 2)
-        {
-            glColor3f(
-                0,
-                0,
-                1
-            );
-        }
+            glColor3f(0,0,1);
 
         else if(side == 0)
-        {
-            glColor3f(
-                1,
-                0,
-                0
-            );
-        }
+            glColor3f(1,0,0);
 
         else
-        {
-            glColor3f(
-                0.7f,
-                0,
-                0
-            );
-        }
+            glColor3f(0.7f,0,0);
 
 
 
@@ -284,12 +246,12 @@ void Raycaster::Render(
 
             glVertex2f(
                 ray,
-                offset
+                lineO
             );
 
             glVertex2f(
                 ray,
-                offset + wallHeight
+                lineO + lineH
             );
 
         glEnd();
@@ -299,13 +261,12 @@ void Raycaster::Render(
         rayAngle += angleStep;
 
     }
-
 }
 
 
 
 //**************************************************
-// Get depth buffer value
+// Get depth buffer
 //**************************************************
 
 float Raycaster::GetDepth(int x) const
