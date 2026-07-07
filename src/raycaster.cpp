@@ -7,8 +7,7 @@
 #define PI 3.1415926535f
 
 
-namespace RCUT
-RCUTRenderer
+namespace RCUTRenderer
 {
 
 
