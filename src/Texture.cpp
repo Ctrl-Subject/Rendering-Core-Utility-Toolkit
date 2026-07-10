@@ -1,7 +1,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-#include "Texture.h"
+#include "RCUT_Texture.h"
 
 #include <GL/freeglut.h>
 #include <cstdio>

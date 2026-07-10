@@ -1,9 +1,9 @@
 #pragma once
 
-#include "RendererAPI.h"
+#include "RCUT_RendererAPI.h"
 
-#include "Camera.h"
-#include "TileMap.h"
+#include "RCUT_Camera.h"
+#include "RCUT_TileMap.h"
 
 namespace RCUTRenderer
 {

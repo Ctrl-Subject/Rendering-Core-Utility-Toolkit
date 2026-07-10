@@ -1,4 +1,4 @@
-#include "Sprite.h"
+#include "RCUT_Sprite.h"
 
 #include <GL/freeglut.h>
 

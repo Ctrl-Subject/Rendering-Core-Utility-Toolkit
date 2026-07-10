@@ -1,4 +1,4 @@
-#include "RayCaster.h"
+#include "RCUT_RayCaster.h"
 
 #include <GL/freeglut.h>
 #include <cmath>

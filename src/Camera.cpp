@@ -1,4 +1,4 @@
-#include "Camera.h"
+#include "RCUT_Camera.h"
 
 #include <cmath>
 

@@ -1,8 +1,8 @@
 
-#include "Renderer.h"
-#include "Camera.h"
-#include "Raycaster.h"
-#include "TileMap.h"
+#include "RCUT_Renderer.h"
+#include "RCUT_Camera.h"
+#include "RCUT_RayCaster.h"
+#include "RCUT_TileMap.h"
 
 #include <GL/freeglut.h>
 

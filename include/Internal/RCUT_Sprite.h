@@ -1,9 +1,9 @@
 #pragma once
 
-#include "RendererAPI.h"
-#include "Camera.h"
-#include "Raycaster.h"
-#include "Texture.h"
+#include "RCUT_RendererAPI.h"
+#include "RCUT_Camera.h"
+#include "RCUT_RayCaster.h"
+#include "RCUT_Texture.h"
 #include <vector>
 
 namespace RCUTRenderer

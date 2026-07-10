@@ -1,4 +1,4 @@
-#include "TileMap.h"
+#include "RCUT_TileMap.h"
 
 
 namespace RCUTRenderer

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "RendererAPI.h"
-#include "Camera.h"
-#include "RayCaster.h"
-#include "Sprite.h"
-#include "Texture.h"
-#include "TileMap.h"
+#include "RCUT_RendererAPI.h"
+#include "RCUT_Camera.h"
+#include "RCUT_RayCaster.h"
+#include "RCUT_Sprite.h"
+#include "RCUT_Texture.h"
+#include "RCUT_TileMap.h"
 
 namespace RCUTRenderer
 {
